@@ -10,15 +10,14 @@ function UsersList() {
     isLoading,
     error,
   } = useGetUsersQuery();
+  console.log(users);
   let content;
   if (isLoading) content = <p>Loading...</p>;
   if (isError) content = <p className="errmsg">{error?.data?.message}</p>;
-  if (isSuccess) {
+  if (isSuccess && users) {
     const { ids } = users;
     const tableContents = ids?.length
-      ? ids.map((id) => {
-          <User key={id} userId={id} />;
-        })
+      ? ids.map((id) => <User key={id} userId={id} />)
       : null;
     content = (
       <table className="table table--user">

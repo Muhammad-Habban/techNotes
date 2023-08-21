@@ -12,7 +12,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       query: () => "/users",
       // to check the status if the request was successfull and there was no error
       validateStatus: (response, result) => {
-        return response.status == 200 && !result.isError;
+        return response.status === 200 && !result.isError;
       },
       // we are just using it because the data obtained from monogoDB has property "_id" but we need "id" for entityBuilder (ig)
       transformResponse: (responeData) => {
@@ -40,10 +40,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
 // this is the hook that is provided by RTK Query that we created Above
 export const { useGetUsersQuery } = userApiSlice;
-
 // now we will create some selectors, to create them we need to get the result of the Query and then we will apply soome built in redux methods to create soem built in Selectors
 
 export const selectUserResult = userApiSlice.endpoints.getUsers.select();
+console.log(selectUserResult);
 
 // now we need to create a seletor that just have the data, the above will have the result, results include "data", "isError", and many more information about the query response
 

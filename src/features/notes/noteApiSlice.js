@@ -9,7 +9,7 @@ export const noteApiSlice = apiSlice.injectEndpoints({
     getNotes: builder.query({
       query: () => "/notes",
       validateStatus: (response, result) => {
-        return response.status && !result.isError;
+        return response.status === 200 && !result.isError;
       },
       transformResponse: (responseData) => {
         const loadedNotes = responseData.map((note) => {
@@ -25,7 +25,7 @@ export const noteApiSlice = apiSlice.injectEndpoints({
             ...result.ids.map((id) => ({ type: "Note", id })),
           ];
         } else {
-          [{ type: "Note", id: "LIST" }];
+          return [{ type: "Note", id: "LIST" }];
         }
       },
     }),
