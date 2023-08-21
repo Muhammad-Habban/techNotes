@@ -11,8 +11,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
     getUsers: builder.query({
       query: () => "/users",
       // to check the status if the request was successfull and there was no error
-      validateStatus: (respone, result) => {
-        return respone.status == 200 && !result.isError;
+      validateStatus: (response, result) => {
+        return response.status == 200 && !result.isError;
       },
       // we are just using it because the data obtained from monogoDB has property "_id" but we need "id" for entityBuilder (ig)
       transformResponse: (responeData) => {
