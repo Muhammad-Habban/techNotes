@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDeleteUserMutation, useUpdateUserMutation } from "./userApiSlice";
 import { useNavigate } from "react-router-dom";
 import { Roles } from "../../config/Roles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faSave } from "@fortawesome/free-solid-svg-icons";
+
 const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 const EditUserForm = ({ user }) => {
@@ -57,7 +60,6 @@ const EditUserForm = ({ user }) => {
   else canSave = validUserName && roles?.length && !isLoading;
 
   const onUserEditClicked = async () => {
-    e.preventDefault();
     if (canSave) {
       if (password) await updateUser({ username, password, roles, active });
       else await updateUser({ username, roles, active });
