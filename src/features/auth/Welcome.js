@@ -14,10 +14,10 @@ function Welcome() {
       <p>{today}</p>
       <h1>Welcome</h1>
       <p>
-        <Link to="/dash/notes">View techNotes</Link>
+        <Link to="/dash/users">View User Settings</Link>
       </p>
       <p>
-        <Link to="/dash/users">View User Settings</Link>
+        <Link to="/dash/notes">View techNotes</Link>
       </p>
     </section>
   );

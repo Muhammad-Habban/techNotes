@@ -61,16 +61,17 @@ const EditUserForm = ({ user }) => {
 
   const onUserEditClicked = async () => {
     if (canSave) {
-      if (password) await updateUser({ username, password, roles, active });
-      else await updateUser({ username, roles, active });
+      if (password)
+        await updateUser({ id: user.id, username, password, roles, active });
+      else await updateUser({ id: user.id, username, roles, active });
     }
   };
 
   const options = Object.values(Roles).map((role) => {
     return (
-      <options key={user} value={user}>
+      <option key={role} value={role}>
         {role}
-      </options>
+      </option>
     );
   });
 

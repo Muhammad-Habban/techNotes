@@ -8,22 +8,24 @@ import NotesList from "./features/notes/NotesList";
 import UsersList from "./features/users/UsersList";
 import NewUserForm from "./features/users/NewUserForm";
 import EditUser from "./features/users/EditUser";
+import Prefetch from "./features/auth/Prefetch";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}></Route>
       <Route index element={<Public />} />
       <Route path="login" element={<Login />} />
-
-      <Route path="dash" element={<DashLayout />}>
-        <Route index element={<Welcome />} />
-        <Route path="users">
-          <Route index element={<UsersList />} />
-          <Route path="new" element={<NewUserForm />} />
-          <Route path=":id" element={<EditUser />} />
-        </Route>
-        <Route path="notes">
-          <Route index element={<NotesList />} />
+      <Route element={<Prefetch />}>
+        <Route path="dash" element={<DashLayout />}>
+          <Route index element={<Welcome />} />
+          <Route path="users">
+            <Route index element={<UsersList />} />
+            <Route path=":id" element={<EditUser />} />
+            <Route path="new" element={<NewUserForm />} />
+          </Route>
+          <Route path="notes">
+            <Route index element={<NotesList />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

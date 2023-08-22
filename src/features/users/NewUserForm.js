@@ -31,7 +31,7 @@ const NewUserForm = () => {
     setValidUserName(USER_REGEX.test(username));
   }, [username]);
   useEffect(() => {
-    setValidPassword(PWD_REGEX(password));
+    setValidPassword(PWD_REGEX.test(password));
   }, [password]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const NewUserForm = () => {
   let canSave = validPassword && validUserName && roles.length && !isLoading;
 
   const onUserSaveClickede = async (e) => {
-    e.preventDefualt();
+    e.preventDefault();
     if (canSave) {
       await createUser({ username, password, roles });
     }
@@ -60,9 +60,11 @@ const NewUserForm = () => {
     : "form__input--incomplete";
 
   const options = Object.values(Roles).map((role) => {
-    <options key={role} value={role}>
-      {role}
-    </options>;
+    return (
+      <option key={role} value={role}>
+        {role}
+      </option>
+    );
   });
 
   const content = (
@@ -72,7 +74,12 @@ const NewUserForm = () => {
         <div className="form__title-row">
           <h2>New User</h2>
           <div className="form__action-buttons">
-            <button className="icon-button" disabled={!canSave} title="Save">
+            <button
+              type="submit"
+              className="icon-button"
+              disabled={!canSave}
+              title="Save"
+            >
               <FontAwesomeIcon icon={faSave} />
             </button>
           </div>
@@ -119,7 +126,7 @@ const NewUserForm = () => {
     </>
   );
 
-  return <div>NewUserForm</div>;
+  return content;
 };
 
 export default NewUserForm;
