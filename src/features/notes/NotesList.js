@@ -8,7 +8,11 @@ function NotesList() {
     isSuccess,
     isLoading,
     error,
-  } = useGetNotesQuery();
+  } = useGetNotesQuery(null, {
+    pollingInterval: 15000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
   let content;
   if (isLoading) content = <p>Loading...</p>;
   if (isError) <p className="errmsg">{error?.data?.message}</p>;

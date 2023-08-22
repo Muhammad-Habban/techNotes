@@ -17,7 +17,13 @@ function Welcome() {
         <Link to="/dash/users">View User Settings</Link>
       </p>
       <p>
+        <Link to="/dash/users/new">Add new User</Link>
+      </p>
+      <p>
         <Link to="/dash/notes">View techNotes</Link>
+      </p>
+      <p>
+        <Link to="/dash/notes/new">Add New Note</Link>
       </p>
     </section>
   );
