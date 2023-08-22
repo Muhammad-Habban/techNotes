@@ -35,11 +35,48 @@ export const userApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    // now we need to create other CRUD operations, namely CREATE, EDIT and DELETE. These are done by MUTATIONS, instead of QUERY in RTK QUERY
+    addNewUser: builder.mutation({
+      query: (initialUserData) => ({
+        url: "/users",
+        method: "POST",
+        body: {
+          ...initialUserData,
+        },
+      }),
+      // invalidate tags basically updates the cache data. (also the data in store)
+      invalidatesTags: [{ type: "USER", id: "LIST" }],
+    }),
+    updateUser: builder.mutation({
+      query: (initialUserData) => ({
+        url: "/users",
+        method: "PATCH",
+        body: {
+          ...initialUserData,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "USER", id: arg.id }],
+    }),
+    deleteUser: builder.mutation({
+      query: ({ id }) => ({
+        url: "/users",
+        method: "DELETE",
+        body: {
+          id,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "USER", id: arg.id }],
+    }),
   }),
 });
 
-// this is the hook that is provided by RTK Query that we created Above
-export const { useGetUsersQuery } = userApiSlice;
+// these are the hooks that is provided by RTK Query that we created Above
+export const {
+  useGetUsersQuery,
+  useAddNewUserMutation,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+} = userApiSlice;
 // now we will create some selectors, to create them we need to get the result of the Query and then we will apply soome built in redux methods to create soem built in Selectors
 
 export const selectUserResult = userApiSlice.endpoints.getUsers.select();
