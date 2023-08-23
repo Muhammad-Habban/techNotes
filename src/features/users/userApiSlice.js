@@ -45,7 +45,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         },
       }),
       // invalidate tags basically updates the cache data. (also the data in store)
-      invalidatesTags: [{ type: "USER", id: "LIST" }],
+      invalidatesTags: [{ type: "User", id: "LIST" }],
     }),
     updateUser: builder.mutation({
       query: (initialUserData) => ({
@@ -55,7 +55,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
           ...initialUserData,
         },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "USER", id: arg.id }],
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
     deleteUser: builder.mutation({
       query: ({ id }) => ({
@@ -65,7 +65,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
           id,
         },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "USER", id: arg.id }],
+      invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
   }),
 });
