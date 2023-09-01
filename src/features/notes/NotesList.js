@@ -15,7 +15,7 @@ function NotesList() {
   });
   let content;
   if (isLoading) content = <p>Loading...</p>;
-  if (isError) <p className="errmsg">{error?.data?.message}</p>;
+  if (isError) content = <p className="errmsg">{error?.data?.message}</p>;
   if (isSuccess) {
     const { ids } = notes;
     const tableContents = ids?.length

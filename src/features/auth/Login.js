@@ -8,7 +8,7 @@ const Login = () => {
   // using refs to focus login input when page loads and focusing error when there is one
   const userRef = useRef();
   const errRef = useRef();
-  const [login, { isLoading }] = useLoginMutation;
+  const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { accessToken } = await login({ username, password }).unwrap();
-      dispatch(setCredentials(accessToken));
+      dispatch(setCredentials({ accessToken }));
       setUsername("");
       setPassword("");
       navigate("/dash");
