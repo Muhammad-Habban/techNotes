@@ -3,7 +3,7 @@ import { useLoginMutation } from "./authApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useNavigate, Link } from "react-router-dom";
-
+import usePersist from "../../hooks/usePersist";
 const Login = () => {
   // using refs to focus login input when page loads and focusing error when there is one
   const userRef = useRef();
@@ -12,10 +12,13 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  // PERSIST
+  const [persist, setPersist] = usePersist();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onUsernameChanged = (e) => setUsername(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
+  const onPersistCheck = (e) => setPersist((prev) => !prev);
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -80,6 +83,16 @@ const Login = () => {
           <button type="submit" className="form__submit-button">
             Sign In
           </button>
+          <label htmlFor="persist" className="form__persist">
+            <input
+              type="checkbox"
+              className="form__checkbox"
+              id="persist"
+              onChange={onPersistCheck}
+              checked={persist}
+            />
+            Trust This Device
+          </label>
         </form>
       </main>
       <footer>
