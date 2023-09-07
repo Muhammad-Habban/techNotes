@@ -3,11 +3,13 @@ import { useDeleteNoteMutation, useUpdateNoteMutation } from "./noteApiSlice";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../hooks/useAuth";
 
 const TITLE_REGEX = /^[A-z' '.0-9!@#$%]{4,20}$/;
 const TEXT_REGEX = /^[A-z' '.0-9!@#$%]{4,150}$/;
 const EditNoteForm = ({ note, users }) => {
   // STATES
+  const { isManager, isAdmin } = useAuth();
   const [title, setTitle] = useState(note.title);
   const [text, setText] = useState(note.text);
   const [username, setUserName] = useState(note.username);
@@ -88,13 +90,15 @@ const EditNoteForm = ({ note, users }) => {
             >
               <FontAwesomeIcon icon={faSave} />
             </button>
-            <button
-              className="icon-button"
-              title="Delete"
-              onClick={onDeleteClicked}
-            >
-              <FontAwesomeIcon icon={faTrashCan} />
-            </button>
+            {(isManager || isAdmin) && (
+              <button
+                className="icon-button"
+                title="Delete"
+                onClick={onDeleteClicked}
+              >
+                <FontAwesomeIcon icon={faTrashCan} />
+              </button>
+            )}
           </div>
         </div>
         <label className="form__label" htmlFor="note-title">
