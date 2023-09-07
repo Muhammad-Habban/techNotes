@@ -20,13 +20,17 @@ function NotesList() {
   if (isError) content = <p className="errmsg">{error?.data?.message}</p>;
   if (isSuccess) {
     const { ids, entities } = notes;
-    let filterIds = [...ids];
-    if (!(isManager && isAdmin)) {
+    console.log(entities);
+    let filterIds;
+    if (isManager || isAdmin) {
+      filterIds = [...ids];
+    } else {
       filterIds = ids.filter(
-        (noteId) => entities[noteId].username === username
+        (noteId) => entities[noteId].user.username === username
       );
     }
-    const tableContents = filterIds?.length
+    console.log(filterIds);
+    const tableContents = ids?.length
       ? filterIds.map((id) => <Note key={id} noteId={id} />)
       : null;
     content = (

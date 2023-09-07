@@ -6,6 +6,7 @@ import usePersist from "../../hooks/usePersist";
 import { Link, Outlet } from "react-router-dom";
 
 const PersistLogin = () => {
+  console.log("INSIDE PERSIST");
   const token = useSelector(selectCurrentToken);
   console.log(token);
   const effectRan = useRef(false);

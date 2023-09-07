@@ -12,12 +12,7 @@ const EditUserForm = ({ user }) => {
     useUpdateUserMutation();
   const [
     deleteUser,
-    {
-      isError: isDelError,
-      isLoading: isDelLoading,
-      isSuccess: isDelSuccess,
-      error: delError,
-    },
+    { isError: isDelError, isSuccess: isDelSuccess, error: delError },
   ] = useDeleteUserMutation();
 
   const [username, setUserName] = useState(user.username);

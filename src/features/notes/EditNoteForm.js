@@ -28,12 +28,7 @@ const EditNoteForm = ({ note, users }) => {
     useUpdateNoteMutation();
   const [
     deleteNote,
-    {
-      isError: isDelError,
-      isLoading: isDelLoading,
-      isSuccess: isDelSuccess,
-      error: delError,
-    },
+    { isError: isDelError, isSuccess: isDelSuccess, error: delError },
   ] = useDeleteNoteMutation();
   // useEffects
   useEffect(() => {

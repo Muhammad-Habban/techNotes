@@ -111,6 +111,7 @@ const DashHeader = () => {
         {newUserButton}
         {notesButton}
         {userButton}
+        {logOutButton}
       </>
     );
   }
