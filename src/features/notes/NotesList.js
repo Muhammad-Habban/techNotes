@@ -20,7 +20,6 @@ function NotesList() {
   if (isError) content = <p className="errmsg">{error?.data?.message}</p>;
   if (isSuccess) {
     const { ids, entities } = notes;
-    console.log(entities);
     let filterIds;
     if (isManager || isAdmin) {
       filterIds = [...ids];
@@ -29,7 +28,6 @@ function NotesList() {
         (noteId) => entities[noteId].user.username === username
       );
     }
-    console.log(filterIds);
     const tableContents = ids?.length
       ? filterIds.map((id) => <Note key={id} noteId={id} />)
       : null;

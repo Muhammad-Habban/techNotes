@@ -10,7 +10,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);
   },
-  devTools: true,
+  devTools: false,
 });
 
 // to enable refetching data in users and notes api slices after some interval and on focus

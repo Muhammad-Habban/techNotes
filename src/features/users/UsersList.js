@@ -14,7 +14,6 @@ function UsersList() {
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
-  console.log(users);
   let content;
   if (isLoading) content = <p>Loading...</p>;
   if (isError) content = <p className="errmsg">{error?.data?.message}</p>;

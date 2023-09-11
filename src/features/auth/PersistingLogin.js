@@ -6,9 +6,7 @@ import usePersist from "../../hooks/usePersist";
 import { Link, Outlet } from "react-router-dom";
 
 const PersistLogin = () => {
-  console.log("INSIDE PERSIST");
   const token = useSelector(selectCurrentToken);
-  console.log(token);
   const effectRan = useRef(false);
   const [trueSuccess, setTrueSuccess] = useState(false);
   const [refresh, { isSuccess, isError, isUninitialized, isLoading, error }] =
@@ -20,7 +18,6 @@ const PersistLogin = () => {
         try {
           const response = await refresh();
           const { accessToken } = response.data;
-          console.log(accessToken);
           setTrueSuccess(true);
         } catch (err) {
           console.log(err);

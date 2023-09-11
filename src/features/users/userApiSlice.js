@@ -82,7 +82,6 @@ export const {
 // now we will create some selectors, to create them we need to get the result of the Query and then we will apply soome built in redux methods to create soem built in Selectors
 
 export const selectUserResult = userApiSlice.endpoints.getUsers.select();
-console.log(selectUserResult);
 
 // now we need to create a seletor that just have the data, the above will have the result, results include "data", "isError", and many more information about the query response
 

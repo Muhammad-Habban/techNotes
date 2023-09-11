@@ -6,7 +6,6 @@ import { faSave } from "@fortawesome/free-solid-svg-icons";
 const TITLE_REGEX = /^[A-z' '.0-9!@#$%]{4,20}$/;
 const TEXT_REGEX = /^[A-z' '.0-9!@#$%]{4,150}$/;
 const NewNoteForm = ({ users }) => {
-  console.log(users);
   const allUserNames = Array.from(users, (user) => user.username);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
