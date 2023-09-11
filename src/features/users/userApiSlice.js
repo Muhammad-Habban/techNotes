@@ -9,11 +9,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // creating a hook that we will use to get data from the api, here we are using getUsers, and providing a query from where it will get data
     getUsers: builder.query({
-      query: () => "/users",
-      // to check the status if the request was successfull and there was no error
-      validateStatus: (response, result) => {
-        return response.status === 200 && !result.isError;
-      },
+      query: () => ({
+        url: "/users",
+        // to check the status if the request was successfull and there was no error
+        validateStatus: (response, result) => {
+          return response.status === 200 && !result.isError;
+        },
+      }),
       // we are just using it because the data obtained from monogoDB has property "_id" but we need "id" for entityBuilder (ig)
       transformResponse: (responeData) => {
         const loadedUsers = responeData.map((user) => {

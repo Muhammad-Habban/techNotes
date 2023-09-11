@@ -124,8 +124,8 @@ const DashHeader = () => {
           <Link to="/dash">
             <h1 className="dash-header__title">techNotes</h1>
           </Link>
+          <nav className="dash-header__nav">{buttonContent}</nav>
         </div>
-        <nav>{buttonContent}</nav>
       </header>
     </>
   );
